@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/pages/bottomnav.dart';
 import 'package:fooddeliveryapp/pages/home.dart';
+import 'package:fooddeliveryapp/pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BottomNav()
+      home: LogIn()
     );
   }
 }
