@@ -42,11 +42,11 @@ class _DetailsState extends State<Details> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Mediterranean",
+                      "Salad",
                       style: AppWidget.semiBooldTextFeildStyle(),
                     ),
                     Text(
-                      "Chickpea Salad",
+                      "Salad rau củ",
                       style: AppWidget.boldTextFeildStyle(),
                     ),
                   ],
@@ -103,11 +103,11 @@ class _DetailsState extends State<Details> {
             ),
             SizedBox(height: 30.0,),
             Row(children: [
-              Text("Delivery Time", style: AppWidget.semiBooldTextFeildStyle(),),
+              Text("Thời gian giao", style: AppWidget.semiBooldTextFeildStyle(),),
               SizedBox(width: 25.0,),
               Icon(Icons.alarm, color: Colors.black54,),
               SizedBox(width: 5.0,),
-              Text("30 min", style: AppWidget.semiBooldTextFeildStyle(),)
+              Text("30 phút", style: AppWidget.semiBooldTextFeildStyle(),)
             ],),
             Spacer(),
             Padding(
@@ -118,7 +118,7 @@ class _DetailsState extends State<Details> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text("Total Price", style: AppWidget.semiBooldTextFeildStyle(),),
+                  Text("Tổng Tiền", style: AppWidget.semiBooldTextFeildStyle(),),
                   Text("50000 VNĐ", style: AppWidget.HeadlineTextFeildStyle(),)
                 ],),
                 Container(
@@ -128,8 +128,8 @@ class _DetailsState extends State<Details> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                    Text("Add to cart", style: TextStyle(color: Colors.white, fontSize: 16.0, fontFamily: "Poppins"),),
-                    SizedBox(width: 30.0,),
+                    Text("Thêm sản phẩm", style: TextStyle(color: Colors.white, fontSize: 16.0, fontFamily: "Poppins"),),
+                      SizedBox(width: 20.0,),
                     Container(
                       padding: EdgeInsets.all(3),
                       decoration: BoxDecoration(

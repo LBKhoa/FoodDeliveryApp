@@ -276,15 +276,15 @@ class _HomeState extends State<Home> {
                           Column(children: [
                             Container(
                                 width: MediaQuery.of(context).size.width/2,
-                                child: Text("Veggie Taco Hash", style: AppWidget.semiBooldTextFeildStyle(),)),
+                                child: Text("Salad Rau Củ", style: AppWidget.semiBooldTextFeildStyle(),)),
                             SizedBox(height: 5.0,),
                             Container(
                                 width: MediaQuery.of(context).size.width/2,
-                                child: Text("Honey goot cheese", style: AppWidget.LightTextFeildStyle(),)),
+                                child: Text("Rau tươi", style: AppWidget.LightTextFeildStyle(),)),
                             SizedBox(height: 5.0,),
                             Container(
                                 width: MediaQuery.of(context).size.width/2,
-                                child: Text("\$28", style: AppWidget.semiBooldTextFeildStyle(),))
+                                child: Text("50000 VNĐ", style: AppWidget.semiBooldTextFeildStyle(),))
                           ],)
                         ],
                       ),

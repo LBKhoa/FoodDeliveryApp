@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:fooddeliveryapp/pages/signup.dart';
-import 'package:fooddeliveryapp/widget/widget_support.dart';
+import 'package:fooddeliveryapp/pages/login.dart';
 
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
+import '../widget/widget_support.dart';
+
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<LogIn> createState() => _LogInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LogInState extends State<LogIn> {
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +25,13 @@ class _LogInState extends State<LogIn> {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                    Color(0xFFff5c30),
-                    Color(0xFFe74b1a),
-                  ])),
+                        Color(0xFFff5c30),
+                        Color(0xFFe74b1a),
+                      ])),
             ),
             Container(
               margin:
-                  EdgeInsets.only(top: MediaQuery.of(context).size.height / 3),
+              EdgeInsets.only(top: MediaQuery.of(context).size.height / 3),
               height: MediaQuery.of(context).size.height / 2,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -46,10 +47,10 @@ class _LogInState extends State<LogIn> {
                 children: [
                   Center(
                       child: Image.asset(
-                    "images/logo.png",
-                    width: MediaQuery.of(context).size.width / 1.5,
-                    fit: BoxFit.cover,
-                  )),
+                        "images/logo.png",
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        fit: BoxFit.cover,
+                      )),
                   SizedBox(
                     height: 50.0,
                   ),
@@ -59,7 +60,7 @@ class _LogInState extends State<LogIn> {
                     child: Container(
                       padding: EdgeInsets.only(left: 20.0, right: 20.0),
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 2,
+                      height: MediaQuery.of(context).size.height / 1.8,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
@@ -69,8 +70,17 @@ class _LogInState extends State<LogIn> {
                             height: 30.0,
                           ),
                           Text(
-                            "Đăng Nhập",
+                            "Đăng Ký",
                             style: AppWidget.HeadlineTextFeildStyle(),
+                          ),
+                          SizedBox(
+                            height: 30.0,
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                                hintText: 'Họ và tên',
+                                hintStyle: AppWidget.semiBooldTextFeildStyle(),
+                                prefixIcon: Icon(Icons.person_outlined)),
                           ),
                           SizedBox(
                             height: 30.0,
@@ -92,20 +102,11 @@ class _LogInState extends State<LogIn> {
                                 prefixIcon: Icon(Icons.password_outlined)),
                           ),
                           SizedBox(
-                            height: 20.0,
-                          ),
-                          Container(
-                              alignment: Alignment.topRight,
-                              child: Text(
-                                "Quên mật khẩu?",
-                                style: AppWidget.semiBooldTextFeildStyle(),
-                              )),
-                          SizedBox(
                             height: 80.0,
                           ),
                           Material(
                             elevation: 5.0,
-                              borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20),
                             child: Container(
                               padding: EdgeInsets.symmetric(vertical: 8.0),
                               width: 200,
@@ -114,13 +115,13 @@ class _LogInState extends State<LogIn> {
                                   borderRadius: BorderRadius.circular(20)),
                               child: Center(
                                   child: Text(
-                                "ĐĂNG NHẬP",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.0,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.bold),
-                              )),
+                                    "Đăng Ký",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.bold),
+                                  )),
                             ),
                           ),
 
@@ -131,9 +132,9 @@ class _LogInState extends State<LogIn> {
                   SizedBox(height: 70.0,),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn()));
                     },
-                      child: Text("Bạn chưa có tài khoản? Đăng Ký", style: AppWidget.semiBooldTextFeildStyle(),))
+                      child: Text("Đã có tài khoản? Đăng Nhập", style: AppWidget.semiBooldTextFeildStyle(),))
                 ],
               ),
             )
