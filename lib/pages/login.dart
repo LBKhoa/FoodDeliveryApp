@@ -15,7 +15,7 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   String email = "", password = "";
 
-  final _formkey= GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
 
   TextEditingController useremailcontroller = new TextEditingController();
   TextEditingController userpasswordcontroller = new TextEditingController();
@@ -24,18 +24,19 @@ class _LogInState extends State<LogIn> {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> BottomNav()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => BottomNav()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              "No User Found for that Email",
+              "Không tìm thấy tài khoản",
               style: TextStyle(fontSize: 18.0, color: Colors.black),
             )));
-      }else if(e.code=='wrong-password'){
+      } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              "Wrong Password Provided by User",
+              "Sai mật khẩu",
               style: TextStyle(fontSize: 18.0, color: Colors.black),
             )));
       }
@@ -104,7 +105,7 @@ class _LogInState extends State<LogIn> {
                                 height: 30.0,
                               ),
                               Text(
-                                "Login",
+                                "Đăng nhập",
                                 style: AppWidget.HeadlineTextFeildStyle(),
                               ),
                               SizedBox(
@@ -112,57 +113,64 @@ class _LogInState extends State<LogIn> {
                               ),
                               TextFormField(
                                 controller: useremailcontroller,
-                                validator: (value){
-                                  if(value==null|| value.isEmpty){
-                                    return 'Please Enter Email';
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Nhập email';
                                   }
                                   return null;
                                 },
                                 decoration: InputDecoration(
                                     hintText: 'Email',
-                                    hintStyle: AppWidget.semiBooldTextFeildStyle(),
+                                    hintStyle:
+                                    AppWidget.semiBooldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.email_outlined)),
                               ),
                               SizedBox(
                                 height: 30.0,
                               ),
                               TextFormField(
-                                controller:userpasswordcontroller,
-                                validator: (value){
-                                  if(value==null|| value.isEmpty){
-                                    return 'Please Enter Password';
+                                controller: userpasswordcontroller,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Nhập mật khẩu';
                                   }
                                   return null;
                                 },
                                 obscureText: true,
                                 decoration: InputDecoration(
-                                    hintText: 'Password',
-                                    hintStyle: AppWidget.semiBooldTextFeildStyle(),
+                                    hintText: 'Mật khẩu',
+                                    hintStyle:
+                                    AppWidget.semiBooldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.password_outlined)),
                               ),
                               SizedBox(
                                 height: 20.0,
                               ),
                               GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgotPassword()));
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ForgotPassword()));
                                 },
                                 child: Container(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      "Forgot Password?",
-                                      style: AppWidget.semiBooldTextFeildStyle(),
+                                      "Quên mật khẩu?",
+                                      style:
+                                      AppWidget.semiBooldTextFeildStyle(),
                                     )),
                               ),
                               SizedBox(
                                 height: 80.0,
                               ),
                               GestureDetector(
-                                onTap: (){
-                                  if(_formkey.currentState!.validate()){
+                                onTap: () {
+                                  if (_formkey.currentState!.validate()) {
                                     setState(() {
-                                      email= useremailcontroller.text;
-                                      password= userpasswordcontroller.text;
+                                      email = useremailcontroller.text;
+                                      password = userpasswordcontroller.text;
                                     });
                                   }
                                   userLogin();
@@ -171,14 +179,16 @@ class _LogInState extends State<LogIn> {
                                   elevation: 5.0,
                                   borderRadius: BorderRadius.circular(20),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                                    padding:
+                                    EdgeInsets.symmetric(vertical: 8.0),
                                     width: 200,
                                     decoration: BoxDecoration(
                                         color: Color(0Xffff5722),
-                                        borderRadius: BorderRadius.circular(20)),
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
                                     child: Center(
                                         child: Text(
-                                          "LOGIN",
+                                          "ĐĂNG NHẬP",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 18.0,
@@ -198,11 +208,13 @@ class _LogInState extends State<LogIn> {
                     ),
                     GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => SignUp()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUp()));
                         },
                         child: Text(
-                          "Don't have an account? Sign up",
+                          "Chưa có tài khoản? Đăng ký",
                           style: AppWidget.semiBooldTextFeildStyle(),
                         ))
                   ],

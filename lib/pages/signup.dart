@@ -32,7 +32,7 @@ class _SignUpState extends State<SignUp> {
         ScaffoldMessenger.of(context).showSnackBar((SnackBar(
             backgroundColor: Colors.redAccent,
             content: Text(
-              "Registered Successfully",
+              "Đăng ký thành công",
               style: TextStyle(fontSize: 20.0),
             ))));
 
@@ -44,14 +44,14 @@ class _SignUpState extends State<SignUp> {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.orangeAccent,
               content: Text(
-                "Password Provided is too Weak",
+                "Mật khẩu quá yếu",
                 style: TextStyle(fontSize: 18.0),
               )));
         } else if (e.code == "email-already-in-use") {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.orangeAccent,
               content: Text(
-                "Account Already exsists",
+                "Tài khoản đã tồn tại",
                 style: TextStyle(fontSize: 18.0),
               )));
         }
@@ -121,7 +121,7 @@ class _SignUpState extends State<SignUp> {
                                 height: 30.0,
                               ),
                               Text(
-                                "Sign up",
+                                "Đăng Ký",
                                 style: AppWidget.HeadlineTextFeildStyle(),
                               ),
                               SizedBox(
@@ -131,12 +131,12 @@ class _SignUpState extends State<SignUp> {
                                 controller: namecontroller,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Please Enter Name';
+                                    return 'Vui lòng điền họ và tên';
                                   }
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                    hintText: 'Name',
+                                    hintText: 'Họ và tên',
                                     hintStyle: AppWidget.semiBooldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.person_outlined)),
                               ),
@@ -147,7 +147,7 @@ class _SignUpState extends State<SignUp> {
                                 controller: mailcontroller,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Please Enter E-mail';
+                                    return 'Vui lòng điền E-mail';
                                   }
                                   return null;
                                 },
@@ -163,13 +163,13 @@ class _SignUpState extends State<SignUp> {
                                 controller: passwordcontroller,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Please Enter Password';
+                                    return 'Vui lòng điền mật khẩu';
                                   }
                                   return null;
                                 },
                                 obscureText: true,
                                 decoration: InputDecoration(
-                                    hintText: 'Password',
+                                    hintText: 'Mật khẩu',
                                     hintStyle: AppWidget.semiBooldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.password_outlined)),
                               ),
@@ -198,7 +198,7 @@ class _SignUpState extends State<SignUp> {
                                         borderRadius: BorderRadius.circular(20)),
                                     child: Center(
                                         child: Text(
-                                          "SIGN UP",
+                                          "ĐĂNG KÝ",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 18.0,
@@ -222,7 +222,7 @@ class _SignUpState extends State<SignUp> {
                               MaterialPageRoute(builder: (context) => LogIn()));
                         },
                         child: Text(
-                          "Already have an account? Login",
+                          "Đã có tài khoản? Đăng Nhập",
                           style: AppWidget.semiBooldTextFeildStyle(),
                         ))
                   ],
