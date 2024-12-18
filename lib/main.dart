@@ -1,14 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fooddeliveryapp/pages/bottomnav.dart';
 import 'package:fooddeliveryapp/pages/home.dart';
 import 'package:fooddeliveryapp/pages/login.dart';
 import 'package:fooddeliveryapp/pages/onboard.dart';
 import 'package:fooddeliveryapp/pages/signup.dart';
 import 'package:fooddeliveryapp/pages/wallet.dart';
+import 'package:fooddeliveryapp/widget/app_constant.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = publishableKey;
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -41,7 +44,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Wallet()
+      home: Onboard()
     );
   }
 }

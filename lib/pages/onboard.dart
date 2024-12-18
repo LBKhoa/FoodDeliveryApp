@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryapp/pages/login.dart';
 import 'package:fooddeliveryapp/pages/signup.dart';
 import 'package:fooddeliveryapp/widget/content_model.dart';
 import 'package:fooddeliveryapp/widget/widget_support.dart';
@@ -84,7 +85,7 @@ class _OnboardState extends State<Onboard> {
             onTap: () {
               if (currentIndex == contents.length - 1) {
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => SignUp()));
+                    context, MaterialPageRoute(builder: (context) => LogIn()));
               }
               _controller.nextPage(
                   duration: Duration(milliseconds: 100),
