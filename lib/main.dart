@@ -5,6 +5,7 @@ import 'package:fooddeliveryapp/pages/home.dart';
 import 'package:fooddeliveryapp/pages/login.dart';
 import 'package:fooddeliveryapp/pages/onboard.dart';
 import 'package:fooddeliveryapp/pages/signup.dart';
+import 'package:fooddeliveryapp/pages/wallet.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Onboard()
+      home: Wallet()
     );
   }
 }

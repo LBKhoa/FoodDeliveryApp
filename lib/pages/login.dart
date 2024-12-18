@@ -24,21 +24,16 @@ class _LogInState extends State<LogIn> {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => BottomNav()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => BottomNav()));
     } on FirebaseAuthException catch (e) {
+      print('Error code: ${e.code}');  // In ra mã lỗi để kiểm tra
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              "Không tìm thấy tài khoản",
-              style: TextStyle(fontSize: 18.0, color: Colors.black),
-            )));
+            content: Text("Không tìm thấy tài khoản", style: TextStyle(fontSize: 18.0, color: Colors.black))));
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              "Sai mật khẩu",
-              style: TextStyle(fontSize: 18.0, color: Colors.black),
-            )));
+            content: Text("Sai mật khẩu", style: TextStyle(fontSize: 18.0, color: Colors.black))));
       }
     }
   }
