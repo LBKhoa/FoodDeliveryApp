@@ -8,7 +8,6 @@ import 'package:random_string/random_string.dart';
 import '../service/database.dart';
 import '../service/shared_pref.dart';
 
-
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -17,13 +16,15 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  String email = "", password = "", name = "";
+  String email = "", password = "", name = "", phone = "", address = "";
 
   TextEditingController namecontroller = new TextEditingController();
 
   TextEditingController passwordcontroller = new TextEditingController();
 
   TextEditingController mailcontroller = new TextEditingController();
+  TextEditingController phonecontroller = new TextEditingController();
+  TextEditingController addresscontroller = new TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
 
@@ -43,12 +44,16 @@ class _SignUpState extends State<SignUp> {
         Map<String, dynamic> addUserInfo = {
           "Name": namecontroller.text,
           "Email": mailcontroller.text,
+          "Phone": phonecontroller.text,
+          "Address": addresscontroller.text,
           "Wallet": "0",
           "Id": Id,
         };
         await DatabaseMethods().addUserDetail(addUserInfo, Id);
         await SharedPreferenceHelper().saveUserName(namecontroller.text);
         await SharedPreferenceHelper().saveUserEmail(mailcontroller.text);
+        await SharedPreferenceHelper().saveUserPhone(phonecontroller.text);
+        await SharedPreferenceHelper().saveUserAddress(addresscontroller.text);
         await SharedPreferenceHelper().saveUserWallet('0');
         await SharedPreferenceHelper().saveUserId(Id);
 
@@ -90,13 +95,13 @@ class _SignUpState extends State<SignUp> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Color(0xFFff5c30),
-                          Color(0xFFe74b1a),
-                        ])),
+                      Color(0xFFff5c30),
+                      Color(0xFFe74b1a),
+                    ])),
               ),
               Container(
-                margin:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height / 3),
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 2),
                 height: MediaQuery.of(context).size.height / 2,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
@@ -112,10 +117,10 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Center(
                         child: Image.asset(
-                          "images/logo.png",
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          fit: BoxFit.cover,
-                        )),
+                      "images/logo.png",
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      fit: BoxFit.cover,
+                    )),
                     SizedBox(
                       height: 50.0,
                     ),
@@ -125,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         padding: EdgeInsets.only(left: 20.0, right: 20.0),
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 1.8,
+                        height: MediaQuery.of(context).size.height / 1.6,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20)),
@@ -134,7 +139,7 @@ class _SignUpState extends State<SignUp> {
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 30.0,
+                                height: 10.0,
                               ),
                               Text(
                                 "Đăng Ký",
@@ -153,8 +158,44 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 decoration: InputDecoration(
                                     hintText: 'Họ và tên',
-                                    hintStyle: AppWidget.semiBooldTextFeildStyle(),
+                                    hintStyle:
+                                        AppWidget.semiBooldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.person_outlined)),
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: phonecontroller,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Vui lòng điền Số Điện Thoại';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                    hintText: 'Số điện thoại',
+                                    hintStyle:
+                                        AppWidget.semiBooldTextFeildStyle(),
+                                    prefixIcon: Icon(Icons.phone_outlined)),
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: addresscontroller,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Vui lòng điền Địa Chỉ';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                    hintText: 'Địa chỉ',
+                                    hintStyle:
+                                        AppWidget.semiBooldTextFeildStyle(),
+                                    prefixIcon:
+                                        Icon(Icons.location_on_outlined)),
                               ),
                               SizedBox(
                                 height: 30.0,
@@ -169,7 +210,8 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 decoration: InputDecoration(
                                     hintText: 'Email',
-                                    hintStyle: AppWidget.semiBooldTextFeildStyle(),
+                                    hintStyle:
+                                        AppWidget.semiBooldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.email_outlined)),
                               ),
                               SizedBox(
@@ -186,11 +228,12 @@ class _SignUpState extends State<SignUp> {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                     hintText: 'Mật khẩu',
-                                    hintStyle: AppWidget.semiBooldTextFeildStyle(),
+                                    hintStyle:
+                                        AppWidget.semiBooldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.password_outlined)),
                               ),
                               SizedBox(
-                                height: 80.0,
+                                height: 50.0,
                               ),
                               GestureDetector(
                                 onTap: () async {
@@ -207,20 +250,22 @@ class _SignUpState extends State<SignUp> {
                                   elevation: 5.0,
                                   borderRadius: BorderRadius.circular(20),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 8.0),
                                     width: 200,
                                     decoration: BoxDecoration(
                                         color: Color(0Xffff5722),
-                                        borderRadius: BorderRadius.circular(20)),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
                                     child: Center(
                                         child: Text(
-                                          "ĐĂNG KÝ",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18.0,
-                                              fontFamily: 'Poppins1',
-                                              fontWeight: FontWeight.bold),
-                                        )),
+                                      "ĐĂNG KÝ",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.0,
+                                          fontFamily: 'Poppins1',
+                                          fontWeight: FontWeight.bold),
+                                    )),
                                   ),
                                 ),
                               ),

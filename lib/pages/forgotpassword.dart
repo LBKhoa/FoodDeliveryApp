@@ -18,7 +18,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   final _formkey = GlobalKey<FormState>();
 
   bool isEmailValid(String email) {
-    final emailRegExp = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$");
+    final emailRegExp =
+        RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$");
     return emailRegExp.hasMatch(email);
   }
 
@@ -44,7 +45,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       Future.delayed(Duration(seconds: 4), () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => LogIn()), // Đảm bảo rằng LogIn() là trang đăng nhập của bạn
+          MaterialPageRoute(
+              builder: (context) =>
+                  LogIn()),
         );
       });
     } on FirebaseAuthException catch (e) {
@@ -95,7 +98,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           Container(
                             padding: EdgeInsets.only(left: 10.0),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white70, width: 2.0),
+                              border:
+                                  Border.all(color: Colors.white70, width: 2.0),
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: TextFormField(
@@ -109,8 +113,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               style: TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                   hintText: "Email",
-                                  hintStyle:
-                                  TextStyle(fontSize: 18.0, color: Colors.white),
+                                  hintStyle: TextStyle(
+                                      fontSize: 18.0, color: Colors.white),
                                   prefixIcon: Icon(
                                     Icons.person,
                                     color: Colors.white70,
@@ -152,7 +156,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             children: [
                               Text(
                                 "Bạn chưa có tài khoản?",
-                                style: TextStyle(fontSize: 18.0, color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 18.0, color: Colors.white),
                               ),
                               SizedBox(width: 5.0),
                               GestureDetector(

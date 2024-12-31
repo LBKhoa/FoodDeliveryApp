@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "709660060622",
+    "firebase_url": "https://foodappoder-a708d-default-rtdb.firebaseio.com",
+    "project_id": "foodappoder-a708d",
+    "storage_bucket": "foodappoder-a708d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709660060622:android:446135bee843739736599f",
+        "android_client_info": {
+          "package_name": "com.example.fooddeliveryapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFtFsmqJVwIvVjOrr9YqC2bvypU5c0isQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709660060622:android:93708a1c9158c48d36599f",
+        "android_client_info": {
+          "package_name": "khoalb.ntu.foodappoder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFtFsmqJVwIvVjOrr9YqC2bvypU5c0isQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709660060622:android:63757d283c5a4b6a36599f",
+        "android_client_info": {
+          "package_name": "khoalb.ntu.vieccanlam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFtFsmqJVwIvVjOrr9YqC2bvypU5c0isQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

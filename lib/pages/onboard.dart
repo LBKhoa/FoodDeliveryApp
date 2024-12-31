@@ -44,13 +44,14 @@ class _OnboardState extends State<Onboard> {
                 },
                 itemBuilder: (_, i) {
                   return Padding(
-                    padding: EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
+                    padding:
+                        EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
                     child: Column(
                       children: [
                         Image.asset(
                           contents[i].image,
                           height: 450,
-                          width: MediaQuery.of(context).size.width ,
+                          width: MediaQuery.of(context).size.width,
                           fit: BoxFit.fill,
                         ),
                         SizedBox(
@@ -77,7 +78,7 @@ class _OnboardState extends State<Onboard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 contents.length,
-                    (index) => buildDot(index, context),
+                (index) => buildDot(index, context),
               ),
             ),
           ),
@@ -92,14 +93,18 @@ class _OnboardState extends State<Onboard> {
                   curve: Curves.bounceIn);
             },
             child: Container(
-              decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(20)),
+              decoration: BoxDecoration(
+                  color: Colors.red, borderRadius: BorderRadius.circular(20)),
               height: 60,
               margin: EdgeInsets.all(40),
               width: double.infinity,
               child: Center(
                 child: Text(
-                  currentIndex == contents.length - 1?"Bắt Đầu": "Tiếp Theo",
-                  style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
+                  currentIndex == contents.length - 1 ? "Bắt Đầu" : "Tiếp Theo",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
