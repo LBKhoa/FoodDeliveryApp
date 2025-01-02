@@ -45,9 +45,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       Future.delayed(Duration(seconds: 4), () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  LogIn()),
+          MaterialPageRoute(builder: (context) => LogIn()),
         );
       });
     } on FirebaseAuthException catch (e) {

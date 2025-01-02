@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/admin/add_food.dart';
 import 'package:fooddeliveryapp/admin/admin_login.dart';
+import 'package:fooddeliveryapp/admin/all_order.dart';
 import 'package:fooddeliveryapp/widget/widget_support.dart';
 
 class HomeAdmin extends StatefulWidget {
@@ -69,7 +70,37 @@ class _HomeAdminState extends State<HomeAdmin> {
                 ),
               ),
             ),
-            SizedBox(height: 600,),
+            SizedBox(height: 30,),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AllUserOrdersPage()));
+              },
+              child: Material(
+                elevation: 10.0,
+                borderRadius: BorderRadius.circular(10),
+                child: Center(
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                        child:
+                        Text(
+                          "Tất cả đơn hàng",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold),
+                        )
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 500,),
             GestureDetector(
               onTap: () {
                 Navigator.push(context,

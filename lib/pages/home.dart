@@ -246,7 +246,7 @@ class _HomeState extends State<Home> {
                           MaterialPageRoute(
                             builder: (context) => BottomNav(
                                 initialTabIndex:
-                                    1), // Truyền giá trị initialTabIndex = 1 để chọn tab "Order"
+                                    1),
                           ),
                         );
                       },
@@ -316,8 +316,8 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(8),
               child: Image.asset(
                 "images/ice-cream.png",
-                height: 40,
-                width: 40,
+                height: 50,
+                width: 50,
                 fit: BoxFit.cover,
                 color: icecream ? Colors.white : Colors.black,
               ),
@@ -343,8 +343,8 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(8),
               child: Image.asset(
                 "images/pizza.png",
-                height: 40,
-                width: 40,
+                height: 50,
+                width: 50,
                 fit: BoxFit.cover,
                 color: pizza ? Colors.white : Colors.black,
               ),
@@ -370,8 +370,8 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(8),
               child: Image.asset(
                 "images/salad.png",
-                height: 40,
-                width: 40,
+                height: 50,
+                width: 50,
                 fit: BoxFit.cover,
                 color: salad ? Colors.white : Colors.black,
               ),
@@ -397,8 +397,8 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(8),
               child: Image.asset(
                 "images/burger.png",
-                height: 40,
-                width: 40,
+                height: 50,
+                width: 50,
                 fit: BoxFit.cover,
                 color: burger ? Colors.white : Colors.black,
               ),

@@ -35,26 +35,7 @@ class _CheckOrderState extends State<CheckOrder> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 20),
-                    // Dịch xuống 15 pixel
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.close,
-                        color: TColor.primaryText,
-                        size: 25,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30), // Khoảng cách phía trên
+              const SizedBox(height: 150), // Khoảng cách phía trên
               Image.asset(
                 "images/thank_you.png",
                 width: media.width * 0.55,

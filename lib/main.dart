@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fooddeliveryapp/admin/home_admin.dart';
 import 'package:fooddeliveryapp/pages/bottomnav.dart';
+import 'package:fooddeliveryapp/pages/login.dart';
 import 'package:fooddeliveryapp/pages/onboard.dart';
 import 'package:fooddeliveryapp/widget/app_constant.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BottomNav()
+      home: LogIn()
     );
   }
 }

@@ -16,6 +16,7 @@ class Order extends StatefulWidget {
 class _OrderState extends State<Order> {
   String? id, wallet;
   int total = 0, amount2 = 0;
+  Stream? foodStream;
 
   void startTimer() {
     Timer(Duration(seconds: 1), () {
@@ -24,27 +25,84 @@ class _OrderState extends State<Order> {
     });
   }
 
-  getthesharedpref() async {
+  // Hàm lấy thông tin người dùng
+  Future<void> getthesharedpref() async {
     id = await SharedPreferenceHelper().getUserId();
     wallet = await SharedPreferenceHelper().getUserWallet();
     setState(() {});
   }
 
-  ontheload() async {
+  // Hàm tải dữ liệu giỏ hàng
+  Future<void> ontheload() async {
     await getthesharedpref();
     foodStream = await DatabaseMethods().getFoodCart(id!);
     setState(() {});
   }
 
-  @override
-  void initState() {
-    ontheload();
-    startTimer();
-    super.initState();
+  // Hàm tạo đơn hàng
+  Future<void> createOrder(List<Map<String, dynamic>> cartItems) async {
+    try {
+      // Thêm thông tin đơn hàng vào Firestore
+      await FirebaseFirestore.instance.collection("orders").add({
+        "userId": id,
+        "total": total,
+        "wallet": wallet,
+        "items": cartItems,
+        "orderDate": DateTime.now(),
+        "status": "Chờ xác nhận", // Trạng thái đơn hàng
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Đơn hàng đã được tạo thành công!"),
+        duration: Duration(seconds: 2),
+      ));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Có lỗi xảy ra khi tạo đơn hàng!"),
+        duration: Duration(seconds: 2),
+      ));
+      print("Error creating order: $e");
+    }
   }
 
-  Stream? foodStream;
+  Future<List<Map<String, dynamic>>> getCartItems(String userId) async {
+    List<Map<String, dynamic>> cartItems = [];
+    try {
+      // Truy vấn đúng document ID và collection `Cart`
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection('Cart')
+          .get();
 
+      if (snapshot.docs.isNotEmpty) {
+        for (var doc in snapshot.docs) {
+          cartItems.add({
+            "id": doc.id,
+            "Name": doc["Name"],
+            "Quantity": doc["Quantity"],
+            "Total": doc["Total"],
+            "Image": doc["Image"],
+          });
+        }
+      } else {
+        print("Cart is empty for user: $userId");
+      }
+    } catch (e) {
+      print("Error fetching cart items: $e");
+    }
+
+    return cartItems;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    ontheload();
+    startTimer();
+  }
+
+  // Widget hiển thị giỏ hàng
   Widget foodCart() {
     return StreamBuilder(
       stream: foodStream,
@@ -63,7 +121,8 @@ class _OrderState extends State<Order> {
         }
 
         if (snapshot.hasData) {
-          total = snapshot.data.docs.fold(0, (sum, doc) => sum + int.parse(doc["Total"]));
+          total = snapshot.data.docs
+              .fold(0, (sum, doc) => sum + int.parse(doc["Total"]));
           return ListView.builder(
             padding: EdgeInsets.zero,
             itemCount: snapshot.data.docs.length,
@@ -77,7 +136,8 @@ class _OrderState extends State<Order> {
                   elevation: 5.0,
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     padding: EdgeInsets.all(10),
                     child: Row(
                       children: [
@@ -89,20 +149,17 @@ class _OrderState extends State<Order> {
                               borderRadius: BorderRadius.circular(10)),
                           child: Center(child: Text(ds["Quantity"])),
                         ),
-                        SizedBox(
-                          width: 20.0,
-                        ),
+                        SizedBox(width: 20.0),
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(60),
-                            child: Image.network(
-                              ds["Image"],
-                              height: 90,
-                              width: 90,
-                              fit: BoxFit.cover,
-                            )),
-                        SizedBox(
-                          width: 20.0,
+                          borderRadius: BorderRadius.circular(60),
+                          child: Image.network(
+                            ds["Image"],
+                            height: 90,
+                            width: 90,
+                            fit: BoxFit.cover,
+                          ),
                         ),
+                        SizedBox(width: 20.0),
                         Column(
                           children: [
                             Text(
@@ -129,36 +186,6 @@ class _OrderState extends State<Order> {
     );
   }
 
-  Future<void> createOrder(List<DocumentSnapshot> cartItems) async {
-    try {
-      // Chuẩn bị danh sách sản phẩm từ giỏ hàng
-      List<Map<String, dynamic>> items = cartItems.map((doc) {
-        return {
-          "name": doc["Name"],
-          "quantity": doc["Quantity"],
-          "price": doc["Total"],
-        };
-      }).toList();
-
-      // Tạo đơn hàng trong Firestore
-      await FirebaseFirestore.instance.collection('orders').add({
-        "userId": id,
-        "items": items,
-        "totalPrice": total,
-        "status": "Đang xử lý",
-        "createdAt": DateTime.now(),
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Đơn hàng đã được tạo thành công!")),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Lỗi khi tạo đơn hàng: $e")),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,12 +200,10 @@ class _OrderState extends State<Order> {
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: Center(
                         child: Text(
-                          "Giỏ Hàng",
-                          style: AppWidget.HeadlineTextFeildStyle(),
-                        )))),
-            SizedBox(
-              height: 20.0,
-            ),
+                      "Giỏ Hàng",
+                      style: AppWidget.HeadlineTextFeildStyle(),
+                    )))),
+            SizedBox(height: 20.0),
             Container(
                 height: MediaQuery.of(context).size.height / 2,
                 child: foodCart()),
@@ -200,11 +225,20 @@ class _OrderState extends State<Order> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 20.0,
-            ),
+            SizedBox(height: 20.0),
             GestureDetector(
               onTap: () async {
+                List<Map<String, dynamic>> cartItems = await getCartItems(id!);
+
+                if (cartItems.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                        "Giỏ hàng của bạn đang trống. Không thể tạo đơn hàng!"),
+                    duration: Duration(seconds: 2),
+                  ));
+                  return;
+                }
+
                 if (amount2 > int.parse(wallet!)) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text("Số dư ví không đủ để thanh toán!"),
@@ -213,18 +247,13 @@ class _OrderState extends State<Order> {
                   return;
                 }
 
-                List<DocumentSnapshot> cartItems =
-                await foodStream!.first; // Lấy danh sách giỏ hàng
-
-                await createOrder(cartItems); // Tạo đơn hàng
+                await createOrder(cartItems);
 
                 int amount = int.parse(wallet!) - amount2;
-
                 await DatabaseMethods()
                     .UpdateUserwallet(id!, amount.toString());
                 await SharedPreferenceHelper()
                     .saveUserWallet(amount.toString());
-
                 await DatabaseMethods().clearCart(id!);
 
                 Navigator.of(context).pushReplacement(
@@ -250,7 +279,7 @@ class _OrderState extends State<Order> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
