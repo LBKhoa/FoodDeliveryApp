@@ -102,7 +102,6 @@ class _OrderState extends State<Order> {
     startTimer();
   }
 
-  // Widget hiển thị giỏ hàng
   Widget foodCart() {
     return StreamBuilder(
       stream: foodStream,
@@ -130,49 +129,124 @@ class _OrderState extends State<Order> {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               DocumentSnapshot ds = snapshot.data.docs[index];
-              return Container(
-                margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
-                child: Material(
-                  elevation: 5.0,
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                    padding: EdgeInsets.all(10),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 90,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(child: Text(ds["Quantity"])),
-                        ),
-                        SizedBox(width: 20.0),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(60),
-                          child: Image.network(
-                            ds["Image"],
-                            height: 90,
-                            width: 90,
-                            fit: BoxFit.cover,
+
+              return Dismissible(
+                key: Key(ds.id), // Unique key for each item
+                direction: DismissDirection.endToStart, // Allow swipe to the left
+                background: Container(
+                  alignment: Alignment.centerRight,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  color: Colors.red,
+                  child: Icon(Icons.delete, color: Colors.white),
+                ),
+                onDismissed: (direction) async {
+                  // Xử lý xóa mục
+                  await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(id)
+                      .collection('Cart')
+                      .doc(ds.id)
+                      .delete();
+
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Món ăn đã được xóa khỏi giỏ hàng!"),
+                  ));
+
+                  setState(() {}); // Cập nhật giao diện
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+                  child: Material(
+                    elevation: 5.0,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  Icons.remove_circle_outline,
+                                  color: Colors.green,
+                                ),
+                                onPressed: () async {
+                                  int currentQuantity =
+                                  int.parse(ds["Quantity"]);
+                                  if (currentQuantity > 1) {
+                                    int newQuantity = currentQuantity - 1;
+                                    int pricePerItem = int.parse(ds["Total"]) ~/
+                                        currentQuantity;
+                                    await FirebaseFirestore.instance
+                                        .collection('users')
+                                        .doc(id)
+                                        .collection('Cart')
+                                        .doc(ds.id)
+                                        .update({
+                                      "Quantity": newQuantity.toString(),
+                                      "Total": (pricePerItem * newQuantity)
+                                          .toString(),
+                                    });
+                                    setState(() {});
+                                  }
+                                },
+                              ),
+                              Text(ds["Quantity"]),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.add_circle_outline,
+                                  color: Colors.green,
+                                ),
+                                onPressed: () async {
+                                  int currentQuantity =
+                                  int.parse(ds["Quantity"]);
+                                  int newQuantity = currentQuantity + 1;
+                                  int pricePerItem = int.parse(ds["Total"]) ~/
+                                      currentQuantity;
+                                  await FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(id)
+                                      .collection('Cart')
+                                      .doc(ds.id)
+                                      .update({
+                                    "Quantity": newQuantity.toString(),
+                                    "Total": (pricePerItem * newQuantity)
+                                        .toString(),
+                                  });
+                                  setState(() {});
+                                },
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(width: 20.0),
-                        Column(
-                          children: [
-                            Text(
-                              ds["Name"],
-                              style: AppWidget.LightTextFeildStyle(),
+                          SizedBox(width: 5.0),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              ds["Image"],
+                              height: 90,
+                              width: 90,
+                              fit: BoxFit.cover,
                             ),
-                            Text(
-                              ds["Total"] + " VNĐ",
-                              style: AppWidget.semiBooldTextFeildStyle(),
-                            )
-                          ],
-                        )
-                      ],
+                          ),
+                          SizedBox(width: 10.0),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                ds["Name"],
+                                style: AppWidget.LightTextFeildStyle(),
+                                maxLines: 2,
+                              ),
+                              Text(
+                                ds["Total"] + " VNĐ",
+                                style: AppWidget.semiBooldTextFeildStyle(),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -185,6 +259,8 @@ class _OrderState extends State<Order> {
       },
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
