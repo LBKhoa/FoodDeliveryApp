@@ -76,7 +76,7 @@ class _DetailsState extends State<Details> {
                   children: [
                     Text(
                       widget.name,
-                      style: AppWidget.semiBooldTextFeildStyle(),
+                      style: AppWidget.semiBoldTextFeildStyle(),
                     ),
                   ],
                 ),
@@ -104,7 +104,7 @@ class _DetailsState extends State<Details> {
                 ),
                 Text(
                   a.toString(),
-                  style: AppWidget.semiBooldTextFeildStyle(),
+                  style: AppWidget.semiBoldTextFeildStyle(),
                 ),
                 SizedBox(
                   width: 20.0,
@@ -142,7 +142,7 @@ class _DetailsState extends State<Details> {
               children: [
                 Text(
                   "Thời gian giao",
-                  style: AppWidget.semiBooldTextFeildStyle(),
+                  style: AppWidget.semiBoldTextFeildStyle(),
                 ),
                 SizedBox(
                   width: 25.0,
@@ -156,7 +156,7 @@ class _DetailsState extends State<Details> {
                 ),
                 Text(
                   widget.time,
-                  style: AppWidget.semiBooldTextFeildStyle(),
+                  style: AppWidget.semiBoldTextFeildStyle(),
                 )
               ],
             ),
@@ -171,7 +171,7 @@ class _DetailsState extends State<Details> {
                     children: [
                       Text(
                         "Tổng Tiền",
-                        style: AppWidget.semiBooldTextFeildStyle(),
+                        style: AppWidget.semiBoldTextFeildStyle(),
                       ),
                       Text(
                         total.toString() + " VNĐ",

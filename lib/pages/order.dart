@@ -42,14 +42,14 @@ class _OrderState extends State<Order> {
   // Hàm tạo đơn hàng
   Future<void> createOrder(List<Map<String, dynamic>> cartItems) async {
     try {
-      // Thêm thông tin đơn hàng vào Firestore
+
       await FirebaseFirestore.instance.collection("orders").add({
         "userId": id,
         "total": total,
         "wallet": wallet,
         "items": cartItems,
         "orderDate": DateTime.now(),
-        "status": "Chờ xác nhận", // Trạng thái đơn hàng
+        "status": "Chờ xác nhận",
       });
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -231,19 +231,23 @@ class _OrderState extends State<Order> {
                             ),
                           ),
                           SizedBox(width: 10.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                ds["Name"],
-                                style: AppWidget.LightTextFeildStyle(),
-                                maxLines: 2,
-                              ),
-                              Text(
-                                ds["Total"] + " VNĐ",
-                                style: AppWidget.semiBooldTextFeildStyle(),
-                              )
-                            ],
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  ds["Name"].length > 20
+                                      ? ds["Name"].substring(0, 20) + '...'
+                                      : ds["Name"],
+                                  style: AppWidget.LightTextFeildStyle(),
+                                ),
+                                Text(
+                                  ds["Total"] + " VNĐ",
+                                  style: AppWidget.semiBoldTextFeildStyle(),
+                                  overflow: TextOverflow.ellipsis,
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -296,7 +300,7 @@ class _OrderState extends State<Order> {
                   ),
                   Text(
                     total.toString() + " VNĐ",
-                    style: AppWidget.semiBooldTextFeildStyle(),
+                    style: AppWidget.semiBoldTextFeildStyle(),
                   )
                 ],
               ),

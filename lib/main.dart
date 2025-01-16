@@ -5,6 +5,7 @@ import 'package:fooddeliveryapp/admin/home_admin.dart';
 import 'package:fooddeliveryapp/pages/bottomnav.dart';
 import 'package:fooddeliveryapp/pages/login.dart';
 import 'package:fooddeliveryapp/pages/onboard.dart';
+import 'package:fooddeliveryapp/service/shared_pref.dart';
 import 'package:fooddeliveryapp/widget/app_constant.dart';
 
 import 'admin/admin_login.dart';
@@ -21,22 +22,34 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, // Tắt Debug Banner
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BottomNav()
+      home: FutureBuilder<bool>(
+        future: SharedPreferenceHelper().getLoginState(),
+        builder: (context, snapshot) {
+          // Nếu đang chờ dữ liệu
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          // Nếu có dữ liệu
+          if (snapshot.hasData && snapshot.data == true) {
+            return BottomNav(); // Người dùng đã đăng nhập
+          } else {
+            return Onboard(); // Người dùng chưa đăng nhập
+          }
+        },
+      ),
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fooddeliveryapp/service/shared_pref.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database.dart';
 
@@ -13,8 +14,9 @@ class AuthMethods {
   }
 
   Future SignOut() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', false); // Xóa trạng thái đăng nhập
     await FirebaseAuth.instance.signOut();
-
   }
 
   Future deleteUser() async {

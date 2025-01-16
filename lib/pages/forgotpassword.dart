@@ -42,7 +42,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           style: TextStyle(fontSize: 18.0),
         ),
       ));
-      Future.delayed(Duration(seconds: 4), () {
+      Future.delayed(Duration(seconds: 3), () {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LogIn()),

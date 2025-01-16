@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryapp/admin/home_admin.dart';
+import 'package:fooddeliveryapp/pages/login.dart';
+
+import '../widget/widget_support.dart';
 
 class AdminLogin extends StatefulWidget {
   const AdminLogin({super.key});
@@ -43,15 +46,18 @@ class _AdminLoginState extends State<AdminLogin> {
                     key: _formkey,
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: 30.0,
+                        ),
                         Text(
-                          "Bắt đầu với\nAdmin!",
+                          "Bắt đầu với Admin!",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 25.0,
                               fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
-                          height: 30.0,
+                          height: 70.0,
                         ),
                         Material(
                           elevation: 3.0,
@@ -152,7 +158,29 @@ class _AdminLoginState extends State<AdminLogin> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
+                                SizedBox(
+                                  height: 50.0,
+                                ),
+                                // Navigate to User Login
+                                GestureDetector(
+                                  onTap: () {
+                                    // Replace 'UserLoginPage()' with your user login page widget
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LogIn()),
+                                    );
+                                  },
+                                  child: Text(
+                                    "Chuyển sang đăng nhập người dùng",
+                                    style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'Poppins'),
+                                    ),
+                                  ),
                               ],
                             ),
                           ),

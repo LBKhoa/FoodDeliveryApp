@@ -17,15 +17,11 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   String email = "", password = "", name = "", phone = "", address = "";
-
   TextEditingController namecontroller = new TextEditingController();
-
   TextEditingController passwordcontroller = new TextEditingController();
-
   TextEditingController mailcontroller = new TextEditingController();
   TextEditingController phonecontroller = new TextEditingController();
   TextEditingController addresscontroller = new TextEditingController();
-
   final _formkey = GlobalKey<FormState>();
 
   registration() async {
@@ -159,7 +155,7 @@ class _SignUpState extends State<SignUp> {
                                 decoration: InputDecoration(
                                     hintText: 'Họ và tên',
                                     hintStyle:
-                                        AppWidget.semiBooldTextFeildStyle(),
+                                        AppWidget.semiBoldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.person_outlined)),
                               ),
                               SizedBox(
@@ -176,7 +172,7 @@ class _SignUpState extends State<SignUp> {
                                 decoration: InputDecoration(
                                     hintText: 'Số điện thoại',
                                     hintStyle:
-                                        AppWidget.semiBooldTextFeildStyle(),
+                                        AppWidget.semiBoldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.phone_outlined)),
                               ),
                               SizedBox(
@@ -193,7 +189,7 @@ class _SignUpState extends State<SignUp> {
                                 decoration: InputDecoration(
                                     hintText: 'Địa chỉ',
                                     hintStyle:
-                                        AppWidget.semiBooldTextFeildStyle(),
+                                        AppWidget.semiBoldTextFeildStyle(),
                                     prefixIcon:
                                         Icon(Icons.location_on_outlined)),
                               ),
@@ -211,7 +207,7 @@ class _SignUpState extends State<SignUp> {
                                 decoration: InputDecoration(
                                     hintText: 'Email',
                                     hintStyle:
-                                        AppWidget.semiBooldTextFeildStyle(),
+                                        AppWidget.semiBoldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.email_outlined)),
                               ),
                               SizedBox(
@@ -229,7 +225,7 @@ class _SignUpState extends State<SignUp> {
                                 decoration: InputDecoration(
                                     hintText: 'Mật khẩu',
                                     hintStyle:
-                                        AppWidget.semiBooldTextFeildStyle(),
+                                        AppWidget.semiBoldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.password_outlined)),
                               ),
                               SizedBox(
@@ -284,7 +280,7 @@ class _SignUpState extends State<SignUp> {
                         },
                         child: Text(
                           "Đã có tài khoản? Đăng Nhập",
-                          style: AppWidget.semiBooldTextFeildStyle(),
+                          style: AppWidget.semiBoldTextFeildStyle(),
                         ))
                   ],
                 ),

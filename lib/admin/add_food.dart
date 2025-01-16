@@ -102,7 +102,7 @@ class _AddFoodState extends State<AddFood> {
             children: [
               Text(
                 "Tải lên hình ảnh món ăn",
-                style: AppWidget.semiBooldTextFeildStyle(),
+                style: AppWidget.semiBoldTextFeildStyle(),
               ),
               SizedBox(
                 height: 20.0,
@@ -158,7 +158,7 @@ class _AddFoodState extends State<AddFood> {
               ),
               Text(
                 "Tên món ăn",
-                style: AppWidget.semiBooldTextFeildStyle(),
+                style: AppWidget.semiBoldTextFeildStyle(),
               ),
               SizedBox(
                 height: 10.0,
@@ -182,7 +182,7 @@ class _AddFoodState extends State<AddFood> {
               ),
               Text(
                 "Giá món",
-                style: AppWidget.semiBooldTextFeildStyle(),
+                style: AppWidget.semiBoldTextFeildStyle(),
               ),
               SizedBox(
                 height: 10.0,
@@ -206,7 +206,7 @@ class _AddFoodState extends State<AddFood> {
               ),
               Text(
                 "Chi tiết món ăn",
-                style: AppWidget.semiBooldTextFeildStyle(),
+                style: AppWidget.semiBoldTextFeildStyle(),
               ),
               SizedBox(
                 height: 10.0,
@@ -231,7 +231,7 @@ class _AddFoodState extends State<AddFood> {
               ),
               Text(
                 "Chọn danh mục",
-                style: AppWidget.semiBooldTextFeildStyle(),
+                style: AppWidget.semiBoldTextFeildStyle(),
               ),
               SizedBox(
                 height: 20.0,
@@ -271,7 +271,7 @@ class _AddFoodState extends State<AddFood> {
               ),
               Text(
                 "Thời gian giao hàng",
-                style: AppWidget.semiBooldTextFeildStyle(),
+                style: AppWidget.semiBoldTextFeildStyle(),
               ),
               SizedBox(
                 height: 10.0,

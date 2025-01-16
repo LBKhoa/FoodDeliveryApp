@@ -84,4 +84,14 @@ class SharedPreferenceHelper {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.clear();  // Xóa tất cả dữ liệu trong SharedPreferences
   }
+
+  Future<void> saveLoginState(bool isLoggedIn) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', isLoggedIn);
+  }
+
+  Future<bool> getLoginState() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('isLoggedIn') ?? false; // Mặc định là false nếu không có giá trị
+  }
 }

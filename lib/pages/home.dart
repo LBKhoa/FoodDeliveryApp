@@ -49,9 +49,7 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.zero,
                 itemCount: snapshot.data.docs.length,
                 shrinkWrap: true,
-                // Tính toán kích thước phù hợp
                 physics: NeverScrollableScrollPhysics(),
-                // Ngăn cuộn danh sách con
                 itemBuilder: (context, index) {
                   DocumentSnapshot ds = snapshot.data.docs[index];
                   return GestureDetector(
@@ -99,7 +97,7 @@ class _HomeState extends State<Home> {
                                           ? ds["Name"].substring(0, 20) + '...'
                                           : ds["Name"],
                                       style:
-                                          AppWidget.semiBooldTextFeildStyle(),
+                                          AppWidget.semiBoldTextFeildStyle(),
                                     ),
                                   ),
                                   SizedBox(height: 5.0),
@@ -123,7 +121,7 @@ class _HomeState extends State<Home> {
                                     child: Text(
                                       ds["Price"] + " VNĐ",
                                       style:
-                                          AppWidget.semiBooldTextFeildStyle(),
+                                          AppWidget.semiBoldTextFeildStyle(),
                                     ),
                                   ),
                                 ],
@@ -188,7 +186,7 @@ class _HomeState extends State<Home> {
                                   ds["Name"].length > 13
                                       ? ds["Name"].substring(0, 13) + '...'
                                       : ds["Name"],
-                                  style: AppWidget.semiBooldTextFeildStyle(),
+                                  style: AppWidget.semiBoldTextFeildStyle(),
                                 ),
                                 SizedBox(
                                   height: 5.0,
@@ -206,7 +204,7 @@ class _HomeState extends State<Home> {
                                 ),
                                 Text(
                                   ds["Price"] + " VND",
-                                  style: AppWidget.semiBooldTextFeildStyle(),
+                                  style: AppWidget.semiBoldTextFeildStyle(),
                                 )
                               ],
                             ),

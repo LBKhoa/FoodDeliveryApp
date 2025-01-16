@@ -105,7 +105,7 @@ class _WalletState extends State<Wallet> {
                     padding: const EdgeInsets.only(left: 20.0),
                     child: Text(
                       "Nạp tiền",
-                      style: AppWidget.semiBooldTextFeildStyle(),
+                      style: AppWidget.semiBoldTextFeildStyle(),
                     ),
                   ),
                   SizedBox(
@@ -126,7 +126,7 @@ class _WalletState extends State<Wallet> {
                           ),
                           child: Text(
                             "100000" + " VNĐ",
-                            style: AppWidget.semiBooldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextFeildStyle(),
                           ),
                         ),
                       ),
@@ -142,7 +142,7 @@ class _WalletState extends State<Wallet> {
                           ),
                           child: Text(
                             "200000" + " VNĐ",
-                            style: AppWidget.semiBooldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextFeildStyle(),
                           ),
                         ),
                       ),
@@ -158,7 +158,7 @@ class _WalletState extends State<Wallet> {
                           ),
                           child: Text(
                             "300000" + " VNĐ",
-                            style: AppWidget.semiBooldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextFeildStyle(),
                           ),
                         ),
                       )
@@ -182,7 +182,7 @@ class _WalletState extends State<Wallet> {
                           ),
                           child: Text(
                             "500000" + " VNĐ",
-                            style: AppWidget.semiBooldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextFeildStyle(),
                           ),
                         ),
                       ),
@@ -198,7 +198,7 @@ class _WalletState extends State<Wallet> {
                           ),
                           child: Text(
                             "700000" + " VNĐ",
-                            style: AppWidget.semiBooldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextFeildStyle(),
                           ),
                         ),
                       ),
@@ -214,7 +214,7 @@ class _WalletState extends State<Wallet> {
                           ),
                           child: Text(
                             "1000000" + " VNĐ",
-                            style: AppWidget.semiBooldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextFeildStyle(),
                           ),
                         ),
                       )

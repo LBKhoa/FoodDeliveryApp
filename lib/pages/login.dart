@@ -6,6 +6,8 @@ import 'package:fooddeliveryapp/pages/forgotpassword.dart';
 import 'package:fooddeliveryapp/pages/signup.dart';
 import 'package:fooddeliveryapp/widget/widget_support.dart';
 
+import '../service/shared_pref.dart';
+
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
 
@@ -17,7 +19,6 @@ class _LogInState extends State<LogIn> {
   String email = "", password = "";
 
   final _formkey = GlobalKey<FormState>();
-
   TextEditingController useremailcontroller = new TextEditingController();
   TextEditingController userpasswordcontroller = new TextEditingController();
 
@@ -25,6 +26,9 @@ class _LogInState extends State<LogIn> {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      // Lưu trạng thái đăng nhập
+      await SharedPreferenceHelper().saveLoginState(true);
+
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => BottomNav()));
     } on FirebaseAuthException catch (e) {
@@ -120,7 +124,7 @@ class _LogInState extends State<LogIn> {
                                 decoration: InputDecoration(
                                     hintText: 'Email',
                                     hintStyle:
-                                        AppWidget.semiBooldTextFeildStyle(),
+                                        AppWidget.semiBoldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.email_outlined)),
                               ),
                               SizedBox(
@@ -138,7 +142,7 @@ class _LogInState extends State<LogIn> {
                                 decoration: InputDecoration(
                                     hintText: 'Mật khẩu',
                                     hintStyle:
-                                        AppWidget.semiBooldTextFeildStyle(),
+                                        AppWidget.semiBoldTextFeildStyle(),
                                     prefixIcon: Icon(Icons.password_outlined)),
                               ),
                               SizedBox(
@@ -157,11 +161,11 @@ class _LogInState extends State<LogIn> {
                                     child: Text(
                                       "Quên mật khẩu?",
                                       style:
-                                          AppWidget.semiBooldTextFeildStyle(),
+                                          AppWidget.semiBoldTextFeildStyle(),
                                     )),
                               ),
                               SizedBox(
-                                height: 80.0,
+                                height: 60.0,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -213,7 +217,7 @@ class _LogInState extends State<LogIn> {
                         },
                         child: Text(
                           "Chưa có tài khoản? Đăng ký",
-                          style: AppWidget.semiBooldTextFeildStyle(),
+                          style: AppWidget.semiBoldTextFeildStyle(),
                         )),
                     SizedBox(
                       height: 70.0,
@@ -227,7 +231,7 @@ class _LogInState extends State<LogIn> {
                         },
                         child: Text(
                           "Đăng nhập với Admin",
-                          style: AppWidget.semiBooldTextFeildStyle(),
+                          style: AppWidget.semiBoldTextFeildStyle(),
                         ))
                   ],
                 ),
